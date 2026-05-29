@@ -1,28 +1,72 @@
+"use client";
 import Image from "next/image";
 import { bannerData } from "@/public/datas/homepage";
+import { motion, Variants } from "framer-motion";
 
 export default function Banner() {
+  const characters = bannerData.title.split("");
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const childVariants: Variants = {
+    hidden: {
+      y: "110%",
+      opacity: 0,
+    },
+    visible: {
+      y: "0%",
+      opacity: 1,
+      transition: {
+        duration: 0.9,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
     <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white font-karla">
       {/* Dynamic Background Image - Covers full screen */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        className="absolute inset-0 z-0 pointer-events-none"
+      >
         <Image
           src={bannerData.image}
           alt="Banner background"
           fill
-          className="object-cover opacity-90"
+          className="object-cover"
           priority
         />
-      </div>
+      </motion.div>
 
       {/* Dynamic Text */}
-      <div className="relative z-10 text-center w-full px-4">
-        <h1 className="text-[228px] font-bold tracking-tighter leading-none select-none text-black">
-          {bannerData.title}
-        </h1>
+      <div className="relative z-10 text-center w-full px-4 ">
+        <motion.h1
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="text-[228px] font-bold leading-none select-none text-black flex justify-center flex-wrap"
+        >
+          {characters.map((char, index) => (
+            <span key={index} className="inline-block overflow-hidden pb-1">
+              <motion.span variants={childVariants} className="inline-block">
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            </span>
+          ))}
+        </motion.h1>
       </div>
-
-     
     </section>
   );
 }

@@ -3,12 +3,12 @@ import { categoriesData } from "@/public/datas/homepage";
 
 export default function CategoriesGrid() {
   return (
-    <section className="bg-white py-20 md:py-32  font-karla container">
+    <section className="bg-[#FAFAFA] py-20 md:py-32  font-karla container">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
         {categoriesData.map((category, index) => (
           <div key={index} className="flex flex-col items-center text-center group cursor-pointer">
             {/* Category Image / Smear */}
-            <div className="relative w-full aspect-square mb-3 overflow-hidden">
+            <div className="relative w-[85%] aspect-square mb-5 overflow-hidden mx-auto">
               <Image
                 src={category.image}
                 alt={category.title}

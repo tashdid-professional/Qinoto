@@ -3,21 +3,21 @@ import { newsletterData } from "@/public/datas/homepage";
 
 export default function NewsletterSection() {
   return (
-    <section className="bg-white py-24 md:py-32 px-6 md:px-12 lg:px-24 font-karla overflow-hidden">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+    <section className="bg-white pb-24 md:pb-32 pr-6 md:pr-12 lg:pr-24 font-karla overflow-hidden">
+      <div className=" flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         {/* Left Side: Large Image */}
-        <div className="w-full lg:w-1/2 relative h-[400px] md:h-[600px] lg:scale-110 lg:-ml-12">
+        <div className="w-full lg:w-[45%] relative h-[400px] md:h-[600px] lg:scale-110 ">
           <Image
             src={newsletterData.image}
             alt="Makeup smears"
             fill
-            className="object-cover rounded-r-[4rem] shadow-2xl"
+            className="object-cover "
             priority
           />
         </div>
 
         {/* Right Side: Content */}
-        <div className="w-full lg:w-1/2 flex flex-col gap-8">
+        <div className="w-full lg:w-[55%] flex flex-col gap-8">
           {/* Zig-Zag Icon */}
           <div className="w-12 h-4 text-black">
             <svg viewBox="0 0 40 10" fill="none" stroke="currentColor" strokeWidth="1">
