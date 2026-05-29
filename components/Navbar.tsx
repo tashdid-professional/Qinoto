@@ -17,8 +17,8 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-8 px-10 bg-transparent font-karla">
-        <Link href="/" className="relative w-32 h-12 grayscale hover:grayscale-0 transition-all duration-300">
+      <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-6 md:p-8 px-6 md:px-10 bg-transparent font-karla">
+        <Link href="/" className="relative w-24 md:w-32 h-10 md:h-12 grayscale hover:grayscale-0 transition-all duration-300">
           <Image
             src="/images/logo.png"
             alt="Blush Logo"
@@ -30,11 +30,11 @@ export default function Navbar() {
         
         <button 
           onClick={() => setIsOpen(true)}
-          className="flex flex-col gap-2 cursor-pointer z-50 group"
+          className="flex flex-col gap-1.5 md:gap-2 cursor-pointer z-50 group"
           aria-label="Open Menu"
         >
-          <div className="w-10 h-0.5 bg-black transition-all group-hover:w-8"></div>
-          <div className="w-10 h-0.5 bg-black"></div>
+          <div className="w-8 md:w-10 h-0.5 bg-black transition-all group-hover:w-8"></div>
+          <div className="w-8 md:w-10 h-0.5 bg-black"></div>
         </button>
       </nav>
 
@@ -44,8 +44,8 @@ export default function Navbar() {
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
-        <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-8 px-10">
-          <Link href="/" onClick={() => setIsOpen(false)} className="relative w-32 h-12">
+        <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-6 md:p-8 px-6 md:px-10">
+          <Link href="/" onClick={() => setIsOpen(false)} className="relative w-24 md:w-32 h-10 md:h-12">
             <Image
               src="/images/logo.png"
               alt="Blush Logo"
@@ -58,7 +58,7 @@ export default function Navbar() {
             className="p-2 cursor-pointer hover:rotate-90 transition-transform duration-300"
             aria-label="Close Menu"
           >
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7 md:w-8 md:h-8">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
@@ -73,7 +73,7 @@ export default function Navbar() {
               )}
               <Link 
                 href={item.path} 
-                className="text-5xl  font-bold tracking-tight text-black hover:opacity-70 transition-opacity font-karla"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black hover:opacity-70 transition-opacity font-karla"
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}

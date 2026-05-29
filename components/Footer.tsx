@@ -35,10 +35,10 @@ export default function Footer() {
   return (
     <footer className="font-karla bg-white mt-10">
       {/* Top Bar */}
-      <div className=" border-t border-b border-black py-10 px-6 ">
-        <div className="container flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className=" border-t border-b border-black py-8 md:py-10 px-6 ">
+        <div className="container flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
           {/* Email */}
-          <div className="text-[17px]  text-black tracking-tight">
+          <div className="text-[17px] text-black tracking-tight">
             <a href={`mailto:${footerData.email}`}>{footerData.email}</a>
           </div>
 
@@ -52,11 +52,11 @@ export default function Footer() {
           </div>
 
           {/* Mini Newsletter */}
-          <div className="flex w-full md:w-auto mt-4 md:mt-0">
+          <div className="flex w-full md:w-auto">
             <input
               type="email"
               placeholder="Your E-mail"
-              className="border border-black px-4 py-3 outline-none flex-grow md:w-64"
+              className="border border-black px-4 py-3 outline-none flex-grow md:w-64 text-sm"
             />
             <button className="bg-black text-white px-5 py-3 flex items-center justify-center">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -68,7 +68,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="py-20 container">
+      <div className="py-16 md:py-20 container px-6 md:px-0">
         <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 text-center md:text-left">
           {/* Brand/Slogan */}
           <div className="flex flex-col justify-start">
@@ -79,12 +79,12 @@ export default function Footer() {
 
           {/* Link Columns */}
           {footerData.columns.map((column, idx) => (
-            <div key={idx} className="flex flex-col gap-3">
+            <div key={idx} className="flex flex-col gap-4">
               {column.links.map((link) => (
                 <Link 
                   key={link.label} 
                   href={link.link} 
-                  className="text-xs font-bold tracking-[0.2em] transition-colors uppercase"
+                  className="text-[11px] font-bold tracking-[0.2em] transition-colors uppercase hover:opacity-60"
                 >
                   {link.label}
                 </Link>

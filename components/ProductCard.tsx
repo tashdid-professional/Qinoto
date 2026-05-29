@@ -36,9 +36,9 @@ export default function ProductCard({ product }: ProductCardProps) {
       <div className="text-center block relative group">
         <Link href={`/product/${product.slug}`} className="block">
           {/* Image Container */}
-          <div className="relative aspect-4/5 flex items-center justify-center mb-8 overflow-hidden bg-[#F9F9F9]">
+          <div className="relative aspect-[4/5] flex items-center justify-center mb-4 md:mb-8 overflow-hidden bg-[#F9F9F9]">
             {/* Product Image */}
-            <div className="relative w-full h-full p-8 transition-transform duration-700 ">
+            <div className="relative w-full h-full p-4 md:p-8 transition-transform duration-700 ">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -49,13 +49,13 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
 
           {/* Content */}
-          <div className="space-y-3 pb-4">
+          <div className="space-y-2 md:space-y-3 pb-2 md:pb-4 px-2">
             
             
-            <h3 className="text-[16px] font-bold text-black leading-tight transition-colors font-karlo">
+            <h3 className="text-sm md:text-[16px] font-bold text-black leading-tight transition-colors font-karlo">
               {product.name}
             </h3>
-            <div className="flex items-center gap-3 justify-center font-bold text-[12px] font-karlo">
+            <div className="flex items-center gap-2 md:gap-3 justify-center font-bold text-[11px] md:text-[12px] font-karlo">
               {product.oldPrice && (
                 <span className="text-gray-400 line-through decoration-black/30">
                   ৳{product.oldPrice.toFixed(2)}

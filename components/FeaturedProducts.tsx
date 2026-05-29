@@ -7,14 +7,14 @@ export default function FeaturedProducts() {
 
   return (
     <section className="bg-white border-b border-t border-gray-300">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-gray-300 gap-px">
+      <div className="grid grid-cols-2 lg:grid-cols-4 bg-gray-300 gap-px">
         {featuredProducts.map((product) => (
           <div 
             key={product.id} 
-            className="aspect-square flex flex-col items-center justify-center p-8 bg-white group relative"
+            className="aspect-square flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 bg-white group relative"
           >
             {/* Image and Hover Overlay */}
-            <div className="relative w-[70%] aspect-[4/5] mb-8 overflow-hidden">
+            <div className="relative w-[85%] sm:w-[70%] aspect-4/5 mb-4 sm:mb-6 md:mb-8 overflow-hidden">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -23,19 +23,19 @@ export default function FeaturedProducts() {
               />
               
               {/* Hover Button Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 pointer-events-none group-hover:pointer-events-auto bg-black/5 px-2">
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 pointer-events-none lg:group-hover:pointer-events-auto bg-black/5 px-2">
                 <Link 
                   href={`/product/${product.slug}`}
-                  className="flex items-center justify-between border-1 border-black bg-white px-5 py-3.5 hover:bg-[#F9E4E1] transition-colors duration-300 group/btn w-full"
+                  className="flex items-center justify-between border border-black bg-white px-3 sm:px-5 py-2.5 sm:py-3.5 hover:bg-[#F9E4E1] transition-colors duration-300 group/btn w-full"
                 >
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em]">View Details</span>
+                  <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em]">View Details</span>
                   <div className="flex items-center">
-                    <div className="h-4 w-[1px] bg-black/20 mr-4 transition-colors" />
+                    <div className="h-4 w-px bg-black/20 mr-2 sm:mr-4 transition-colors" />
                     <div className="relative">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
+                        width="14"
+                        height="14"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -55,7 +55,7 @@ export default function FeaturedProducts() {
 
             <Link 
               href={`/product/${product.slug}`}
-              className="font-bold tracking-tight text-black hover:opacity-60 transition-opacity text-center uppercase"
+              className="text-xs sm:text-sm font-bold tracking-tight text-black hover:opacity-60 transition-opacity text-center uppercase px-2"
             >
               {product.name}
             </Link>

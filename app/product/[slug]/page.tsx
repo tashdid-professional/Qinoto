@@ -54,14 +54,12 @@ export default function ProductDetailsPage() {
       <Navbar />
       
       {/* Hero Header */}
-      <section className=" relative h-87.5 flex items-center  overflow-hidden bg-[#F0F0F0]">
-        <div 
-          className="relative z-10 pt-20 container"
-        >
-          <h1 className="text-6xl md:text-[60px] font-bold font-outfit text-black mb-4 ">
+      <section className="relative h-[250px] md:h-[350px] flex items-center overflow-hidden bg-[#F0F0F0]">
+        <div className="relative z-10 pt-16 md:pt-20 container px-6 md:px-0">
+          <h1 className="text-5xl md:text-[60px] font-bold font-outfit text-black mb-4">
             Shop
           </h1>
-          <nav className="flex items-center  space-x-3 text-[12px] font-bold tracking-[0.2em] text-black uppercase font-lato">
+          <nav className="flex items-center space-x-3 text-[10px] md:text-[12px] font-bold tracking-[0.2em] text-black uppercase font-lato">
             <Link href="/" className="hover:text-[#b6713e] transition-colors">HOME</Link>
             <span className="text-[#b6713e]">♦</span>
             <Link href="/shop" className="hover:text-[#b6713e] transition-colors">SHOP</Link>
@@ -71,15 +69,13 @@ export default function ProductDetailsPage() {
         </div>
       </section>
 
-      <div className="container pb-16 md:pb-20 pt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-0">
+      <div className="container pb-16 md:pb-20 pt-10 md:pt-16 px-6 md:px-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0">
           
           {/* Left: Image Gallery */}
-          <div 
-            className="flex flex-col gap-6"
-          >
+          <div className="flex flex-col gap-6">
             {/* Main Image */}
-            <div className="relative aspect-4/5 w-full max-w-112.5 mx-auto md:mx-0 bg-[#F9F9F9] overflow-hidden">
+            <div className="relative aspect-[4/5] w-full max-w-[450px] mx-auto md:mx-0 bg-[#F9F9F9] overflow-hidden">
               {product.oldPrice && (
                 <div className="absolute top-4 left-4 w-12 h-12 bg-black rounded-full flex items-center justify-center z-20">
                   <span className="text-white text-xs md:text-[13px] font-bold">
@@ -111,27 +107,25 @@ export default function ProductDetailsPage() {
           </div>
 
           {/* Right: Product Info */}
-          <div 
-            className="flex flex-col justify-start max-w-2xl"
-          >
+          <div className="flex flex-col justify-start max-w-2xl">
             <div className="flex flex-col md:flex-row md:items-center gap-3 mb-4">
-              <h1 className="text-[38px] font-bold font-outfit text-black">
+              <h1 className="text-[32px] md:text-[38px] font-bold font-outfit text-black leading-tight">
                 {product.name}
               </h1>
               <div className="hidden md:block h-8 w-px bg-gray-300" />
               <div className="flex items-center gap-4 font-lato">
                 {product.oldPrice && (
-                  <span className="text-[#999] line-through text-[29px]">
+                  <span className="text-[#999] line-through text-[24px] md:text-[29px]">
                     ৳{product.oldPrice.toFixed(2)}
                   </span>
                 )}
-                <span className="text-black text-[29px] font-bold">
+                <span className="text-black text-[24px] md:text-[29px] font-bold">
                   ৳{product.price.toFixed(2)}
                 </span>
               </div>
             </div>
 
-            <p className="text-[#545454] font-lato text-[15px] leading-relaxed mb-8 whitespace-pre-line">
+            <p className="text-[#545454] font-lato text-sm md:text-[15px] leading-relaxed mb-8 whitespace-pre-line">
               {product.description}
             </p>
 
@@ -240,8 +234,8 @@ export default function ProductDetailsPage() {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div className="mt-20">
-            <h2 className=" text-[24px] tracking-normal mb-6 md:mb-10 font-semibold font-karla border-t pt-4">Related Products</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+            <h2 className=" text-[24px] tracking-normal mb-8 font-semibold font-karla border-t pt-4">Related Products</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {relatedProducts.map((rel) => (
                 <ProductCard key={rel.id} product={rel} />
               ))}

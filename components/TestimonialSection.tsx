@@ -24,14 +24,14 @@ export default function TestimonialSection() {
   };
 
   return (
-    <section className="bg-[#FAEBE8]  px-6 font-karla relative overflow-hidden h-auto min-h-[600px] flex items-center">
+    <section className="bg-[#FAEBE8] py-16 md:py-0 px-6 font-karla relative overflow-hidden h-auto md:min-h-[600px] flex items-center">
       <div 
         key={current}
         className="max-w-4xl mx-auto text-center flex flex-col items-center w-full animate-slide-in"
         style={{ "--slide-dir": direction } as React.CSSProperties}
       >
         {/* Profile Image */}
-        <div className="relative w-20 h-20 md:w-24 md:h-24 mb-10">
+        <div className="relative w-20 h-20 md:w-24 md:h-24 mb-6 md:mb-10">
           <div className="absolute inset-0 rounded-full border border-black/10 scale-110"></div>
           <Image
             src={testimonialsData[current].image}
@@ -42,20 +42,20 @@ export default function TestimonialSection() {
         </div>
 
         {/* Testimonial Content */}
-        <div className="space-y-6 min-h-[320px] md:min-h-[280px] flex flex-col justify-center">
-          <h2 className="text-3xl md:text-4xl lg:text-[38px] font-bold text-black tracking-tight">
+        <div className="space-y-4 md:space-y-6 min-h-[auto] md:min-h-[280px] flex flex-col justify-center">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] font-bold text-black tracking-tight leading-tight">
             {testimonialsData[current].title}
           </h2>
 
-          <p className="text-[#545454] text-lg md:text-xl lg:text-[22px] leading-relaxed max-w-3xl mx-auto">
+          <p className="text-[#545454] text-base sm:text-lg md:text-xl lg:text-[22px] leading-relaxed max-w-3xl mx-auto">
             {testimonialsData[current].quote}
           </p>
 
-          <div className="pt-4">
-            <h3 className="text-[24px] font-bold text-black">
+          <div className="pt-2 md:pt-4">
+            <h3 className="text-xl md:text-[24px] font-bold text-black">
               {testimonialsData[current].name}
             </h3>
-            <p className="text-xs font-bold tracking-[0.2em]  mt-2">
+            <p className="text-[10px] md:text-xs font-bold tracking-[0.2em] mt-1 md:mt-2">
               {testimonialsData[current].role}
             </p>
           </div>

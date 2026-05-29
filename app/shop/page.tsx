@@ -121,12 +121,12 @@ function ShopContent() {
     <main className="bg-white min-h-screen ">
       <Navbar />
       {/* Hero Header */}
-      <section className="relative h-[350px]  flex items-center  overflow-hidden bg-[#F0F0F0]">
-        <div className="relative z-10  pt-20 container">
-          <h1 className="text-6xl md:text-[60px] font-bold font-outfit text-black mb-4 ">
+      <section className="relative h-[250px] md:h-[350px] flex items-center overflow-hidden bg-[#F0F0F0]">
+        <div className="relative z-10 pt-16 md:pt-20 container px-6 md:px-0">
+          <h1 className="text-5xl md:text-[60px] font-bold font-outfit text-black mb-4">
             Shop
           </h1>
-          <nav className="flex items-center  space-x-3 text-[12px] font-bold tracking-[0.2em] text-black uppercase font-lato">
+          <nav className="flex items-center space-x-3 text-[10px] md:text-[12px] font-bold tracking-[0.2em] text-black uppercase font-lato">
             <Link href="/" className="hover:text-[#b6713e] transition-colors">
               HOME
             </Link>
@@ -136,13 +136,13 @@ function ShopContent() {
         </div>
       </section>
       {/* Main Content Area */}
-      <section className="py-12 container">
+      <section className="py-12 container px-6 md:px-0">
         <div className="flex flex-col lg:flex-row gap-12 relative lg:static">
           {/* Product Grid Area - Left Side */}
           <div className="w-full lg:w-[76%] order-2 lg:order-1">
             {/* Filter Bar */}
-            <div className="flex flex-col md:flex-row justify-between items-center mb-16 pt-2">
-              <div className="text-[15px] text-gray-400 font-lato">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-10 md:mb-16 pt-2 gap-4">
+              <div className="text-[14px] md:text-[15px] text-gray-400 font-lato text-center md:text-left">
                 Showing {indexOfFirstProduct + 1}–
                 {Math.min(indexOfLastProduct, sortedProducts.length)} of{" "}
                 {sortedProducts.length} results

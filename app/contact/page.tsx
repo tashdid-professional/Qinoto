@@ -37,7 +37,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen font-karla pt-32 lg:pt-0 ">
+      <main className="min-h-screen font-karla  lg:pt-0 ">
         <div className="flex flex-col gap-20 lg:flex-row min-h-screen py-32">
           
           {/* Left Side: Image (Replacing Map) */}
