@@ -55,7 +55,7 @@ export default function ProductDetailsPage() {
       
       {/* Hero Header */}
       <section className="relative h-[250px] md:h-[350px] flex items-center overflow-hidden bg-[#F0F0F0]">
-        <div className="relative z-10 pt-16 md:pt-20 container px-6 md:px-0">
+        <div className="relative z-10 pt-16 md:pt-20 container ">
           <h1 className="text-5xl md:text-[60px] font-bold font-outfit text-black mb-4">
             Shop
           </h1>
@@ -69,7 +69,7 @@ export default function ProductDetailsPage() {
         </div>
       </section>
 
-      <div className="container pb-16 md:pb-20 pt-10 md:pt-16 px-6 md:px-0">
+      <div className="container pb-16 md:pb-20 pt-10 md:pt-16 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0">
           
           {/* Left: Image Gallery */}

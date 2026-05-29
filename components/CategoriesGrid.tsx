@@ -3,7 +3,7 @@ import { categoriesData } from "@/public/datas/homepage";
 
 export default function CategoriesGrid() {
   return (
-    <section className="bg-[#FAFAFA] py-16 md:py-32 font-karla px-6 md:px-0 container">
+    <section className="bg-[#FAFAFA] py-16 md:py-32 font-karla   container">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 md:gap-y-16">
         {categoriesData.map((category, index) => (
           <div key={index} className="flex flex-col items-center text-center group cursor-pointer">

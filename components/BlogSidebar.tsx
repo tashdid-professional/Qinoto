@@ -19,7 +19,7 @@ export default function BlogSidebar() {
   };
 
   return (
-    <aside className="w-[25%]  flex flex-col gap-12 font-karla">
+    <aside className="lg:w-[25%]  flex flex-col gap-12 font-karla">
       {/* Search Bar */}
       <form onSubmit={handleSearch} className="relative border border-black p-4 flex items-center justify-between">
         <input 

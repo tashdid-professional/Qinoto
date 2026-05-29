@@ -121,8 +121,8 @@ function ShopContent() {
     <main className="bg-white min-h-screen ">
       <Navbar />
       {/* Hero Header */}
-      <section className="relative h-[250px] md:h-[350px] flex items-center overflow-hidden bg-[#F0F0F0]">
-        <div className="relative z-10 pt-16 md:pt-20 container px-6 md:px-0">
+      <section className="relative h-[250px] md:h-[350px] flex items-center overflow-hidden bg-[#F0F0F0] container">
+        <div className="relative z-10 pt-16 md:pt-20 ">
           <h1 className="text-5xl md:text-[60px] font-bold font-outfit text-black mb-4">
             Shop
           </h1>
@@ -136,7 +136,7 @@ function ShopContent() {
         </div>
       </section>
       {/* Main Content Area */}
-      <section className="py-12 container px-6 md:px-0 relative">
+      <section className="py-12 container  relative">
         <div className="flex flex-col lg:flex-row gap-12 relative lg:static">
           {/* Product Grid Area - Left Side */}
           <div className="w-full lg:w-[76%] order-2 lg:order-1">

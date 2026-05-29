@@ -26,7 +26,7 @@ function BlogGrid() {
   const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
 
   return (
-    <div className="flex-grow w-[75%]">
+    <div className="flex-grow lg:w-[75%]">
       {currentBlogs.length > 0 ? (
         <>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
