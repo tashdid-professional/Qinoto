@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --font-karla: var(--font-karla);
+  --font-outfit: var(--font-outfit);
+  --font-lato: var(--font-lato);
+   /* Container Spacing Base */
+  --spacing-container: 1.5rem; 
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --animate-slide-in: slideIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(calc(var(--slide-dir, 1) * 60px));
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+@utility title{
+  @apply text-[48px] font-bold font-karla leading-[49.92px] tracking-[-1.44px];
 }
+@utility description{
+  @apply text-[18px] font-normal text-[#545454] font-karla leading-[28.8px] tracking-[-0.36px];
+}
+@utility customButton2 {
+  @apply text-xs font-bold tracking-widest text-black mr-6 transition-colors;
+}
+
+@utility customButton {
+  @apply relative inline-flex items-center self-start border border-black px-7 py-3.5 transition-all duration-300 hover:bg-[#F8DCDB];
+}
+
+/* Responsive Overrides for the theme variable */
+@layer base {
+  :root {
+    @media (width >= theme(--breakpoint-md)) {
+      --spacing-container: 3rem;   /* Tablet */
+    }
+    
+    @media (width >= theme(--breakpoint-lg)) {
+      --spacing-container: 8rem;   /* PC Desktop */
+    }
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: var(--spacing-container);
+  width: 100%;
+  max-width: 1400px; /* Optional: adds a reasonable max-width for very large screens */
+}
+
+
