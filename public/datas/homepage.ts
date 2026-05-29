@@ -97,8 +97,8 @@ export const footerData = {
     {
       
       links: [
-        { label: "Home", link: "#" },
-        { label: "ABOUT US", link: "about" },
+        { label: "Home", link: "/" },
+        { label: "ABOUT US", link: "/about" },
         { label: "Contact us", link: "/contact" }
       ]
     },
@@ -113,8 +113,8 @@ export const footerData = {
     {
       
       links: [
-        { label: "Privacy policy", link: "legal" },
-        { label: "Terms and Conditions", link: "terms" }
+        { label: "Privacy policy", link: "/legal/privacy-policy" },
+        { label: "Terms and Conditions", link: "/legal/terms-and-conditions" }
       ]
     }
   ],

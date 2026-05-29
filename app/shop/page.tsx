@@ -121,12 +121,12 @@ function ShopContent() {
     <main className="bg-white min-h-screen ">
       <Navbar />
       {/* Hero Header */}
-      <section className="relative h-[350px]  flex items-center container overflow-hidden bg-[#F0F0F0]">
-        <div className="relative z-10 text-center pt-20">
+      <section className="relative h-[350px]  flex items-center  overflow-hidden bg-[#F0F0F0]">
+        <div className="relative z-10  pt-20 container">
           <h1 className="text-6xl md:text-[60px] font-bold font-outfit text-black mb-4 ">
             Shop
           </h1>
-          <nav className="flex items-center justify-center space-x-3 text-[12px] font-bold tracking-[0.2em] text-black uppercase font-lato">
+          <nav className="flex items-center  space-x-3 text-[12px] font-bold tracking-[0.2em] text-black uppercase font-lato">
             <Link href="/" className="hover:text-[#b6713e] transition-colors">
               HOME
             </Link>

@@ -54,14 +54,14 @@ export default function ProductDetailsPage() {
       <Navbar />
       
       {/* Hero Header */}
-      <section className="container relative h-87.5 flex items-center  overflow-hidden bg-[#F0F0F0]">
+      <section className=" relative h-87.5 flex items-center  overflow-hidden bg-[#F0F0F0]">
         <div 
-          className="relative z-10 pt-20"
+          className="relative z-10 pt-20 container"
         >
           <h1 className="text-6xl md:text-[60px] font-bold font-outfit text-black mb-4 ">
             Shop
           </h1>
-          <nav className="flex items-center justify-center space-x-3 text-[12px] font-bold tracking-[0.2em] text-black uppercase font-lato">
+          <nav className="flex items-center  space-x-3 text-[12px] font-bold tracking-[0.2em] text-black uppercase font-lato">
             <Link href="/" className="hover:text-[#b6713e] transition-colors">HOME</Link>
             <span className="text-[#b6713e]">♦</span>
             <Link href="/shop" className="hover:text-[#b6713e] transition-colors">SHOP</Link>
@@ -79,7 +79,7 @@ export default function ProductDetailsPage() {
             className="flex flex-col gap-6"
           >
             {/* Main Image */}
-            <div className="relative aspect-square w-full max-w-112.5 mx-auto md:mx-0 bg-[#F9F9F9] overflow-hidden">
+            <div className="relative aspect-4/5 w-full max-w-112.5 mx-auto md:mx-0 bg-[#F9F9F9] overflow-hidden">
               {product.oldPrice && (
                 <div className="absolute top-4 left-4 w-12 h-12 bg-black rounded-full flex items-center justify-center z-20">
                   <span className="text-white text-xs md:text-[13px] font-bold">

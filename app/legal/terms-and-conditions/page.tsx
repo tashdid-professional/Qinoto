@@ -1,32 +1,16 @@
-import { notFound } from "next/navigation";
-import { legalContent } from "@/public/datas/legal";
+import { termsAndConditionsContent } from "@/public/datas/legal";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export async function generateStaticParams() {
-  return Object.keys(legalContent).map((slug) => ({
-    slug,
-  }));
-}
-
-interface PageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export default async function LegalPage({ params }: PageProps) {
-  const { slug } = await params;
-  const data = legalContent[slug];
-
-  if (!data) {
-    notFound();
-  }
+export default function TermsAndConditionsPage() {
+  const data = termsAndConditionsContent;
 
   return (
     <>
       <Navbar />
       <main className="min-h-screen font-karla pt-32 pb-20 px-6 md:px-12 lg:px-24">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-12 tracking-tight text-black italic">
+          <h1 className="text-4xl md:text-5xl font-bold mb-12 tracking-tight text-black ">
             {data.title.toLowerCase()}.
           </h1>
           <div className="space-y-6">
