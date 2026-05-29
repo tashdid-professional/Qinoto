@@ -68,7 +68,7 @@ export default function Footer() {
       </div>
 
       {/* Main Footer Links */}
-      <div className="py-16 md:py-20 container px-6 md:px-0">
+      <div className="py-16 md:py-20 container  ">
         <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 text-center md:text-left">
           {/* Brand/Slogan */}
           <div className="flex flex-col justify-start">

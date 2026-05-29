@@ -136,7 +136,7 @@ function ShopContent() {
         </div>
       </section>
       {/* Main Content Area */}
-      <section className="py-12 container px-6 md:px-0">
+      <section className="py-12 container px-6 md:px-0 relative">
         <div className="flex flex-col lg:flex-row gap-12 relative lg:static">
           {/* Product Grid Area - Left Side */}
           <div className="w-full lg:w-[76%] order-2 lg:order-1">
@@ -185,7 +185,7 @@ function ShopContent() {
                     onClick={() => handlePageChange(i + 1)}
                     className={`text-[20px] transition-all duration-300 ${
                       currentPage === i + 1
-                        ? "text-[#F5E6E3] underline underline-offset-[12px] decoration-1"
+                        ? "text-[#F5E6E3] underline underline-offset-12 decoration-1"
                         : "text-black hover:opacity-50"
                     }`}
                   >
@@ -205,9 +205,34 @@ function ShopContent() {
             )}
           </div>
 
-          {/* Sidebar - Right Side */}
-          <aside className="w-full lg:w-[24%] order-1 lg:order-2 space-y-16">
-            <div className="space-y-16">
+          {/* Mobile Filter Button - Fixed Side */}
+          <div className="lg:hidden">
+            <button 
+              onClick={() => setIsSidebarOpen(true)}
+              className="fixed right-4 top-[30%] -rotate-90 origin-right translate-y-1/2 z-[100] bg-black text-white px-8 py-4 rounded-t-2xl font-bold text-[11px] uppercase tracking-[0.2em] shadow-2xl flex items-center gap-3 transition-all active:scale-95 whitespace-nowrap"
+            >
+              <Plus size={16} />
+              Browse Categories
+            </button>
+          </div>
+
+          {/* Sidebar - Right Side (Desktop) / Drawer (Mobile) */}
+          <aside className={`
+            fixed inset-0 z-[100] bg-white md:p-10 p-6 transition-all duration-500 lg:static lg:z-auto lg:p-0 lg:translate-x-0 lg:w-[24%] lg:order-2 lg:opacity-100
+            ${isSidebarOpen ? "translate-x-0 opacity-100" : "-translate-x-full lg:translate-x-0 opacity-0 lg:opacity-100"}
+          `}>
+             {/* Mobile Header for Sidebar */}
+             <div className="flex lg:hidden justify-between items-center mb-10 pb-4 border-b">
+                <h2 className="text-xl font-bold uppercase tracking-widest font-outfit">Filter</h2>
+                <button 
+                  onClick={() => setIsSidebarOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X size={28} />
+                </button>
+              </div>
+
+            <div className="space-y-16 overflow-y-auto max-h-screen lg:max-h-none pb-20 lg:pb-0">
               {/* Search Product Widget */}
               <div className="space-y-6">
                 <div className="relative flex items-center">
@@ -247,7 +272,7 @@ function ShopContent() {
               {/* Product Categories Widget */}
               <div className="space-y-8">
                 <div className="relative pb-4">
-                  <h4 className="font-semibold text-[13px] uppercase tracking-[0.13em] text-black border-b border-t py-4">
+                  <h4 className="font-semibold text-[13px] uppercase tracking-[0.13em] text-black border-b border-t py-4 font-karla">
                     Product categories
                   </h4>
                   
@@ -286,6 +311,15 @@ function ShopContent() {
               </div>
             </div>
           </aside>
+
+          {/* Backdrop for mobile */}
+          {isSidebarOpen && (
+            <div 
+              className="fixed inset-0 bg-black/40 z-[90] lg:hidden backdrop-blur-sm transition-opacity"
+              onClick={() => setIsSidebarOpen(false)}
+            />
+          )}
+
         </div>
       </section>
       <Footer />

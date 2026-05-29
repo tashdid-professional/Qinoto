@@ -51,12 +51,12 @@ export default function Banner() {
       </motion.div>
 
       {/* Dynamic Text */}
-      <div className="relative z-10 text-center w-full px-4 ">
+      <div className="relative z-10 text-center w-full lg:px-4  ">
         <motion.h1
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="text-[80px] sm:text-[120px] md:text-[180px] lg:text-[228px] font-bold leading-none select-none text-black flex justify-center flex-wrap"
+          className="text-[75px] sm:text-[120px] md:text-[180px] lg:text-[228px] font-bold leading-none select-none text-black flex justify-center flex-wrap"
         >
           {characters.map((char, index) => (
             <span key={index} className="inline-block overflow-hidden pb-1">
