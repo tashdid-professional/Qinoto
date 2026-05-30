@@ -53,12 +53,7 @@ export default async function BlogDetailsPage({ params }: { params: Promise<{ sl
                 <p className="description mb-8 text-justify">
                   {blog.description}
                 </p>
-                {/* If there's more long content in the description, it will continue here */}
-                {blog.description.length > 500 && (
-                   <p className="description">
-                    {blog.description}
-                  </p>
-                )}
+               
               </div>
             </div>
 
