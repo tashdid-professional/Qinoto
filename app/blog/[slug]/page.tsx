@@ -50,7 +50,7 @@ export default async function BlogDetailsPage({ params }: { params: Promise<{ sl
 
               {/* Description Section */}
               <div className="lg:mt-16">
-                <p className="description mb-8">
+                <p className="description mb-8 text-justify">
                   {blog.description}
                 </p>
                 {/* If there's more long content in the description, it will continue here */}
