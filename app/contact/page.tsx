@@ -10,6 +10,7 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,7 +31,7 @@ export default function ContactPage() {
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     alert("Message sent! (Mock)");
-    setFormData({ name: "", email: "", message: "" });
+    setFormData({ name: "", email: "", phone: "", message: "" });
     setIsSubmitting(false);
   };
 
@@ -88,6 +89,14 @@ export default function ContactPage() {
                   placeholder="Your E-mail"
                   required
                   value={formData.email}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 bg-white py-4 px-6 outline-none text-sm placeholder:text-gray-400 focus:border-black transition-colors"
+                />
+                <input
+                  name="phone"
+                  type="tel"
+                  placeholder="Your Mobile No"
+                  value={formData.phone}
                   onChange={handleChange}
                   className="w-full border border-gray-300 bg-white py-4 px-6 outline-none text-sm placeholder:text-gray-400 focus:border-black transition-colors"
                 />

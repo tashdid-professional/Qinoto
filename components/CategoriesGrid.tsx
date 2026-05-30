@@ -4,7 +4,7 @@ import { categoriesData } from "@/public/datas/homepage";
 export default function CategoriesGrid() {
   return (
     <section className="bg-[#FAFAFA] py-16 md:py-32 font-karla   container">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 md:gap-y-16">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 gap-x-2 gap-y-12 md:gap-y-16">
         {categoriesData.map((category, index) => (
           <div key={index} className="flex flex-col items-center text-center group cursor-pointer">
             {/* Category Image / Smear */}
@@ -23,7 +23,7 @@ export default function CategoriesGrid() {
             </h3>
 
             {/* Description */}
-            <p className="text-[#545454] text-sm md:text-[15px] leading-relaxed max-w-60">
+            <p className="text-[#545454] text-xs md:text-[15px] leading-relaxed max-w-60">
               {category.description}
             </p>
           </div>

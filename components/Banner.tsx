@@ -36,9 +36,13 @@ export default function Banner() {
     <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white font-karla">
       {/* Dynamic Background Image - Covers full screen */}
       <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 2, ease: "easeOut" }}
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ 
+          duration: 3, 
+          ease: [0.16, 1, 0.3, 1], // Sophisticated power4-style ease
+          delay: 1.4 // Starts exactly as the word "makeup" is fully visible
+        }}
         className="absolute inset-0 z-0 pointer-events-none"
       >
         <Image

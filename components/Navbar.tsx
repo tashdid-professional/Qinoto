@@ -1,41 +1,97 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
 
   const menuItems = [
     { name: "Home", path: "/" },
     { name: "Shop", path: "/shop" },
-    
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 100) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setIsVisible(false);
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
     <>
-      <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-6 md:p-8 px-6 md:px-10 bg-transparent font-karla">
-        <Link href="/" className="relative w-24 md:w-32 h-10 md:h-12 grayscale hover:grayscale-0 transition-all duration-300">
-          <Image
-            src="/images/logo.png"
-            alt="Blush Logo"
-            fill
-            className="object-contain object-left"
-            priority
-          />
-        </Link>
-        
-        <button 
-          onClick={() => setIsOpen(true)}
-          className="flex flex-col gap-1.5 md:gap-2 cursor-pointer z-50 group"
-          aria-label="Open Menu"
-        >
-          <div className="w-8 md:w-10 h-0.5 bg-black transition-all group-hover:w-8"></div>
-          <div className="w-8 md:w-10 h-0.5 bg-black"></div>
-        </button>
+      <nav className={`
+        fixed top-0 left-0 right-0 z-50 flex items-center p-6 md:p-8 px-6 md:px-10 transition-all duration-300
+        ${isVisible ? "translate-y-0" : "-translate-y-full"}
+        ${lastScrollY > 100 ? "bg-white/95 backdrop-blur-md shadow-sm py-4 md:py-6" : "bg-transparent"}
+        ${isHomePage && lastScrollY <= 100 ? "absolute" : "fixed"}
+      `}>
+        <div className="w-full flex items-center">
+          {/* Logo Area */}
+          <div className="flex-1">
+            <Link href="/" className="relative inline-block w-24 md:w-32 h-10 md:h-12 grayscale hover:grayscale-0 transition-all duration-300 text-left">
+              <Image
+                src="/images/logo.png"
+                alt="Blush Logo"
+                fill
+                className="object-contain object-left"
+                priority
+              />
+            </Link>
+          </div>
+
+          {/* New Horizontal Menu - Centered */}
+          <div className={`hidden lg:flex items-center gap-10 transition-opacity duration-300 ${isHomePage && lastScrollY <= 100 ? "opacity-0 invisible" : "opacity-100 visible"}`}>
+            {menuItems.map((item) => (
+              <Link
+                key={item.path}
+                href={item.path}
+                className={`text-[13px] font-bold uppercase tracking-[0.2em] transition-colors relative group py-2
+                  ${pathname === item.path ? "text-black" : "text-black/60 hover:text-black"}
+                `}
+              >
+                {item.name}
+                <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-black transition-transform duration-300 origin-left
+                  ${pathname === item.path ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}
+                `} />
+              </Link>
+            ))}
+          </div>
+          
+          {/* Action Area (Hamburger) */}
+          <div className="flex-1 flex justify-end">
+            <button 
+              onClick={() => setIsOpen(true)}
+              className={`flex flex-col gap-1.5 md:gap-2 cursor-pointer z-50 group ${!isHomePage || lastScrollY > 100 ? "lg:hidden" : ""}`}
+              aria-label="Open Menu"
+            >
+              <div className="w-8 md:w-10 h-0.5 bg-black transition-all group-hover:w-8"></div>
+              <div className="w-8 md:w-10 h-0.5 bg-black"></div>
+            </button>
+          </div>
+        </div>
       </nav>
 
       {/* Full Screen Overlay */}
@@ -66,20 +122,26 @@ export default function Navbar() {
         </div>
 
         <ul className="flex flex-col items-center gap-1 ">
-          {menuItems.map((item, index) => (
-            <li key={item.name} className="relative py-2">
-              {index === 0 && (
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-12 bg-white -z-10 shadow-sm"></div>
-              )}
-              <Link 
-                href={item.path} 
-                className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-black hover:opacity-70 transition-opacity font-karla"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-              </Link>
-            </li>
-          ))}
+          {menuItems.map((item) => {
+            const isActive = pathname === item.path;
+            
+            return (
+              <li key={item.name} className="relative py-2">
+                {isActive && (
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-12 bg-white -z-10 shadow-sm transition-all duration-300"></div>
+                )}
+                <Link 
+                  href={item.path} 
+                  className={`text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight transition-all font-karla ${
+                    isActive ? "text-black" : "text-black/40 hover:text-black"
+                  }`}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </>

@@ -44,7 +44,7 @@ export default function ProductDetailsPage() {
   }
 
   const relatedProducts = products
-    .filter((p) => p.category === product.category && p.id !== product.id)
+    .filter((p) => p.category !== product.category)
     .slice(0, 4);
 
   const activeGallery = selectedVariant ? selectedVariant.gallery : product.gallery;
@@ -169,7 +169,7 @@ export default function ProductDetailsPage() {
                 href={product.purchaseLink || "#"} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="w-full md:w-auto px-14 bg-black border border-black text-white h-14 flex items-center justify-center text-[12px] md:text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-white hover:text-black transition-all duration-300 font-lato"
+                className="w-full md:w-auto px-14 bg-[#F9E4E1] border border-black text-black h-14 flex items-center justify-center text-[12px] md:text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-all duration-300 font-lato"
               >
                 Purchase Now
               </a>
@@ -182,7 +182,7 @@ export default function ProductDetailsPage() {
                   onClick={() => setActiveTab("description")}
                   className={`px-8 md:px-12 py-4 text-[12px] font-bold tracking-[0.2em] uppercase transition-all duration-300 border border-black -mr-px ${
                     activeTab === 'description' 
-                    ? 'bg-[#F9E4E1] text-black' 
+                    ? 'bg-black text-white' 
                     : 'bg-white text-black hover:bg-gray-50'
                   }`}
                 >
@@ -192,7 +192,7 @@ export default function ProductDetailsPage() {
                   onClick={() => setActiveTab("videos")}
                   className={`px-8 md:px-12 py-4 text-[12px] font-bold tracking-[0.2em] uppercase transition-all duration-300 border border-black ${
                     activeTab === 'videos' 
-                    ? 'bg-[#F9E4E1] text-black' 
+                    ? 'bg-black text-white' 
                     : 'bg-white text-black hover:bg-gray-50'
                   }`}
                 >
