@@ -3,8 +3,8 @@ import { categoriesData } from "@/public/datas/homepage";
 
 export default function CategoriesGrid() {
   return (
-    <section className="bg-[#FAFAFA] py-16 md:py-32 font-karla   container">
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 gap-x-2 gap-y-12 md:gap-y-16">
+    <section className="bg-[#FAFAFA] py-16 md:py-32 font-karla   ">
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 gap-x-2 gap-y-12 md:gap-y-16 container">
         {categoriesData.map((category, index) => (
           <div key={index} className="flex flex-col items-center text-center group cursor-pointer">
             {/* Category Image / Smear */}

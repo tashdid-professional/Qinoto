@@ -10,7 +10,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const pathname = usePathname();
-  const isHomePage = pathname === "/";
+  
 
   const menuItems = [
     { name: "Home", path: "/" },
@@ -46,7 +46,7 @@ export default function Navbar() {
         fixed top-0 left-0 right-0 z-50 flex items-center p-6 md:p-8 px-6 md:px-10 transition-all duration-300
         ${isVisible ? "translate-y-0" : "-translate-y-full"}
         ${lastScrollY > 100 ? "bg-white/95 backdrop-blur-md shadow-sm py-4 md:py-6" : "bg-transparent"}
-        ${isHomePage && lastScrollY <= 100 ? "absolute" : "fixed"}
+        ${ lastScrollY <= 100 ? "absolute" : "fixed"}
       `}>
         <div className="w-full flex items-center">
           {/* Logo Area */}
@@ -63,7 +63,7 @@ export default function Navbar() {
           </div>
 
           {/* New Horizontal Menu - Centered */}
-          <div className={`hidden lg:flex items-center gap-10 transition-opacity duration-300 ${isHomePage && lastScrollY <= 100 ? "opacity-0 invisible" : "opacity-100 visible"}`}>
+          <div className={`hidden lg:flex items-center gap-10 transition-opacity duration-300 ${ lastScrollY <= 100 ? "opacity-0 invisible" : "opacity-100 visible"}`}>
             {menuItems.map((item) => (
               <Link
                 key={item.path}
@@ -84,7 +84,7 @@ export default function Navbar() {
           <div className="flex-1 flex justify-end">
             <button 
               onClick={() => setIsOpen(true)}
-              className={`flex flex-col gap-1.5 md:gap-2 cursor-pointer z-50 group ${!isHomePage || lastScrollY > 100 ? "lg:hidden" : ""}`}
+              className={`flex flex-col gap-1.5 md:gap-2 cursor-pointer z-50 group ${ lastScrollY > 100 ? "lg:hidden" : ""}`}
               aria-label="Open Menu"
             >
               <div className="w-8 md:w-10 h-0.5 bg-black transition-all group-hover:w-8"></div>
