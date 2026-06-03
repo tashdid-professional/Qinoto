@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { products } from "@/public/datas/products";
+import { getProducts } from "@/src/services/api";
 
-export default function FeaturedProducts() {
+export default async function FeaturedProducts() {
+  const products = await getProducts();
   const featuredProducts = products.filter(p => p.featured).slice(0, 8);
 
   return (
@@ -15,12 +16,13 @@ export default function FeaturedProducts() {
           >
             {/* Image and Hover Overlay */}
             <div className="relative w-[85%] sm:w-[70%] aspect-4/5 mb-4 sm:mb-6 md:mb-8 overflow-hidden">
+            <Link href={`/product/${product.slug}`} >
               <Image
                 src={product.image}
                 alt={product.name}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
+              /></Link>
               
               {/* Hover Button Overlay */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 pointer-events-none lg:group-hover:pointer-events-auto bg-black/5 px-2">

@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, Suspense, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,7 +12,8 @@ import {
   ChevronLeft,
   X,
 } from "lucide-react";
-import { products } from "@/public/datas/products";
+import { getProducts } from "@/src/services/api";
+import { Product } from "@/src/types";
 import ProductCard from "@/components/ProductCard";
 
 import { useSearchParams } from "next/navigation";
@@ -21,6 +22,7 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 
 function ShopContent() {
+  const [products, setProducts] = useState<Product[]>([]);
   const searchParams = useSearchParams();
   const searchBarQuery = searchParams.get("search") || "";
   const categoryParam = searchParams.get("category");
@@ -33,8 +35,16 @@ function ShopContent() {
   const [sortOrder, setSortOrder] = useState<string>("latest");
   const [searchQuery, setSearchQuery] = useState(searchBarQuery);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getProducts();
+      setProducts(data);
+    };
+    fetchData();
+  }, []);
+
   // Sync state with URL parameter if it changes
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedCategory(categoryParam);
     setSearchQuery(searchBarQuery);
     setCurrentPage(1);

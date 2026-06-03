@@ -1,15 +1,25 @@
 "use client"
 import Image from "next/image";
-
-import { blogs } from "@/public/datas/blogs";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { getBlogs, getBlogSidebar } from "@/src/services/api";
+import { Blog, BlogSidebarData } from "@/src/types";
 
 export default function BlogSidebar() {
-  const latestPosts = blogs.slice(0, 3);
+  const [latestPosts, setLatestPosts] = useState<Blog[]>([]);
+  const [sidebarData, setSidebarData] = useState<BlogSidebarData | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const [blogs, sidebar] = await Promise.all([getBlogs(), getBlogSidebar()]);
+      setLatestPosts(blogs.slice(0, 3));
+      setSidebarData(sidebar);
+    };
+    fetchData();
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,14 +49,16 @@ export default function BlogSidebar() {
         </div>
       </form>
 
-      {/* About Me Section */}
-      <div>
-        <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-1">About Me</h3>
-        <div className="w-full h-px bg-black mb-6"></div>
-        <p className="text-sm text-gray-500 leading-relaxed">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit sed.
-        </p>
-      </div>
+      {/* About Us Section */}
+      {sidebarData && (
+        <div>
+          <h3 className="text-xs font-bold tracking-[0.2em] uppercase mb-1">{sidebarData.title}</h3>
+          <div className="w-full h-px bg-black mb-6"></div>
+          <p className="text-sm text-gray-500 leading-relaxed">
+            {sidebarData.description}
+          </p>
+        </div>
+      )}
 
       {/* Latest Posts Section */}
       <div>
@@ -65,7 +77,7 @@ export default function BlogSidebar() {
               </div>
               <div className="flex flex-col justify-center gap-1">
                 <span className="text-[10px] uppercase tracking-widest text-gray-400">
-                  {post.day}th {post.month} 2026
+                  {post.day}th {post.month} {post.year || '2026'}
                 </span>
                 <h4 className="text-sm font-bold leading-tight group-hover:text-gray-600 transition-colors">
                   {post.title}

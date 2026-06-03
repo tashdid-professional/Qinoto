@@ -5,14 +5,25 @@ export interface Blog {
   author: string;
   day: string;
   month: string;
+  year? : string;
   title: string;
   excerpt: string;
   description: string;
   image: string;
   isFeatured?: boolean;
 }
+export interface BlogSidebar{
+  title : string;
+  description : string;
+}
+
+export const blogSidebarData: BlogSidebar = {
+  title: "About Us",
+  description: "We are ...."
+}
 
 export const blogs: Blog[] = [
+  
   {
     id: 1,
     slug: "the-cosmetics-world",
@@ -20,6 +31,7 @@ export const blogs: Blog[] = [
     author: "Janny Joe",
     day: "08",
     month: "Apr",
+    year: "2026",
     title: "THE COSMETICS WORLD",
     excerpt: "Est diam debitis an, error recusabo id pro, quo eripuit civibus ut. Mel ut tamquam erroribus, ad nonumy vituperata mei.Et ...",
     description: "Lorem ipsum dolor sit amet, odio legere cotidieque ex quo, an noster evertitur vel, ei solet democritum est. Id mel tibique ancillae convenire. Admodum tacimates maiestatis his id. Sed everti accusamus facilisi ne. Est diam debitis an, error recusabo id pro, quo eripuit civibus ut. Mel ut tamquam erroribus, ad nonumy vituperata mei. Et qui falli latine consequuntur. In appellantur concludaturque pro. Commune scriptorem ad pri, ut euripidis posidonium has. Eum ei verear dolorum. Duo quas viris delenit cu, dolores inciderint scribentur mel in. Option elaboraret et mea, sea eligendi insolens scripserit et, tantas assueverit liberavisse vim at. Prima modus erroribus id cum, te mea munere doming equidem. At per ullum facilisis. Lorem ipsum dolor sit amet, ceteros temporibus mei ad, eum Mel purto adipisci eu, ex eum nisl consul, has virtute inermis ne. Eripxit delicatissimi in eos. Pri ut congue dolorem. Impetus consequat in qui, pro posse bonorum delicatissimi ad, veri voluptatibus ei qui. Munere accusamus ex has, pri vero populo voluptaria eum no, eos atomoru.",
@@ -33,6 +45,7 @@ export const blogs: Blog[] = [
     author: "Janny Joe",
     day: "09",
     month: "Apr",
+    year: "2025",
     title: "PREP A GOOD PRIMER",
     excerpt: "Est diam debitis an, error recusabo id pro, quo eripuit civibus ut. Mel ut tamquam erroribus, ad nonumy vituperata mei.Et ...",
     description: "Est diam debitis an, error recusabo id pro, quo eripuit civibus ut. Mel ut tamquam erroribus, ad nonumy vituperata mei. Et qui falli latine consequuntur. In appellantur concludaturque pro. Commune scriptorem ad pri, ut euripidis posidonium has. Eum ei verear dolorum. Duo quas viris delenit cu, dolores inciderint scribentur mel in. Option elaboraret et mea, sea eligendi insolens scripserit et, tantas assueverit liberavisse vim at. Prima modus erroribus id cum, te mea munere doming equidem. At per ullum facilisis. Lorem ipsum dolor sit amet, ceteros temporibus mei ad, eum Mel purto adipisci eu, ex eum nisl consul, has virtute inermis ne. Eripxit delicatissimi in eos. Pri ut congue dolorem. Impetus consequat in qui, pro posse bonorum delicatissimi ad, veri voluptatibus ei qui. Munere accusamus ex has, pri vero populo voluptaria eum no, eos atomoru.",
@@ -56,7 +69,7 @@ export const blogs: Blog[] = [
     slug: "50-shades-of-great",
     category: "idk",
     author: "Tashdid",
-    day: "08",
+    day: "30",
     month: "Apr",
     title: "50 SHADES OF GREAT",
     excerpt: "Est diam debitis an, error recusabo id pro, quo eripuit civibus ut. Mel ut tamquam erroribus, ad nonumy vituperata mei.Et ...",

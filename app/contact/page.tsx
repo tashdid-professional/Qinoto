@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { contactData } from "@/public/datas/contact";
+import { getContactData, submitContactForm } from "@/src/services/api";
+import { ContactData } from "@/src/types";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ContactPage() {
+  const [data, setData] = useState<ContactData | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,6 +16,14 @@ export default function ContactPage() {
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const contactData = await getContactData();
+      setData(contactData);
+    };
+    fetchData();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -24,16 +34,22 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Log the data for now - easy to replace with a fetch() call to your DB/API later
-    console.log("Form Data Submitted:", formData);
-    
-    // Simulate a delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    alert("Message sent! (Mock)");
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    setIsSubmitting(false);
+    try {
+      const result = await submitContactForm(formData);
+      if (result.success) {
+        alert("Message sent successfully!");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        alert("Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  if (!data) return null;
 
   return (
     <>
@@ -45,7 +61,7 @@ export default function ContactPage() {
           <div className="lg:w-1/2  flex items-center justify-center">
             <div className="relative w-full aspect-[4/3] bg-white   ">
                <Image
-                src={contactData.image}
+                src={data.image}
                 alt="Contact Us"
                 fill
                 className="object-cover"
@@ -65,11 +81,11 @@ export default function ContactPage() {
           </div>
 
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-black mb-6">
-                Drop us a message.
+                {data.title}
               </h1>
 
               <p className="text-gray-500 mb-12 leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.
+                {data.description}
               </p>
 
               {/* Contact Form */}

@@ -1,10 +1,11 @@
 export const bannerData = {
   title: "makeup.",
   image: "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?q=80&w=2000&auto=format&fit=crop", // Single background image (e.g., brush smear or full visual)
+  mobileImage: "https://picsum.photos/1500/1500?random=24", // Mobile specific image
   logoText: "Blush"
 };
 
-export const productSectionData = {
+export const Section1Data = {
   title: "Your top rated makeup product. Enhanced.",
   description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diamusus nonummy nibh euismod tincidunt utla oreet dolore magn aliquam erat volutpat ad minim.",
   buttonText: "LEARN MORE",
@@ -12,7 +13,7 @@ export const productSectionData = {
   image: "https://picsum.photos/1500/1500?random=2", // A makeup/laptop mockup style image
 };
 
-export const colorsSectionData = {
+export const Section2Data = {
   title: "Absolute perfection in color shades.",
   description: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diamusus nonummy nibh euismod tincidunt utla oreet dolore magn aliquam erat volutpat ad.",
   buttonText: "LEARN MORE",
@@ -87,6 +88,7 @@ export const newsletterData = {
 };
 
 export const footerData = {
+  Description: "Lorem ipsum dolor sit amet bla blah blah .",
   email: "blush@qodeinteractive.com",
   socialLinks: [
     { name: "Facebook", link: "#" },

@@ -1,10 +1,32 @@
 "use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { bannerData } from "@/public/datas/homepage";
+import { getBannerData } from "@/src/services/api";
+import { BannerData } from "@/src/types";
 import { motion, Variants } from "framer-motion";
 
 export default function Banner() {
-  const characters = bannerData.title.split("");
+  const [data, setData] = useState<BannerData | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const bannerData = await getBannerData();
+      setData(bannerData);
+    };
+    fetchData();
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  if (!data) return null;
+
+  const characters = data.title.split("");
 
   const containerVariants: Variants = {
     hidden: { opacity: 1 },
@@ -46,7 +68,7 @@ export default function Banner() {
         className="absolute inset-0 z-0 pointer-events-none"
       >
         <Image
-          src={bannerData.image}
+          src={isMobile ? data.mobileImage : data.image}
           alt="Banner background"
           fill
           className="object-cover"

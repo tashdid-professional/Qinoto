@@ -1,17 +1,29 @@
 "use client";
 
-import { useState } from "react";
-import { faqData } from "@/public/datas/faq";
+import { useState, useEffect } from "react";
+import { getFAQData } from "@/src/services/api";
+import { FAQData } from "@/src/types";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export default function FAQPage() {
+  const [data, setData] = useState<FAQData | null>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const faqData = await getFAQData();
+      setData(faqData);
+    };
+    fetchData();
+  }, []);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  if (!data) return null;
 
   return (
     <>
@@ -38,10 +50,10 @@ export default function FAQPage() {
           {/* Left Side: Content */}
           <div className="lg:w-2/5">
             <h1 className="text-3xl md:text-4xl font-bold leading-[1.1] tracking-tight text-black mb-10 translate-y-[-0.5rem]">
-              {faqData.title}
+              {data.title}
             </h1>
             <div className="space-y-6">
-              {faqData.description.map((para, i) => (
+              {data.description.map((para, i) => (
                 <p key={i} className="text-gray-500 leading-relaxed text-sm">
                   {para}
                 </p>
@@ -52,7 +64,7 @@ export default function FAQPage() {
           {/* Right Side: Accordion */}
           <div className="lg:w-3/5">
             <div className="flex flex-col ">
-              {faqData.items.map((item, index) => (
+              {data.items.map((item, index) => (
                 <div key={index} className="flex flex-col">
                   {/* Question Box */}
                   <div className={`border border-black transition-colors ${openIndex === index ? 'bg-[#F8DCDB]' : 'hover:bg-[#F8DCDB]'}`}>

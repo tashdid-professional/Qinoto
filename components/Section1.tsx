@@ -1,8 +1,10 @@
 import Image from "next/image";
-import { productSectionData } from "@/public/datas/homepage";
+import { getSection1Data } from "@/src/services/api";
 import CustomButton from "./CustomButton";
 
-export default function ProductSection() {
+export default async function Section1() {
+  const data = await getSection1Data();
+
   return (
     <section className="bg-[#FCFCFC] font-karla overflow-hidden pt-10 md:pt-20">
       <div className="flex flex-col lg:flex-row items-center lg:min-h-150">
@@ -10,7 +12,7 @@ export default function ProductSection() {
         <div className="w-full lg:w-1/2 order-2 lg:order-1">
           <div className="relative aspect-4/3 sm:aspect-16/10 w-full">
             <Image
-              src={productSectionData.image}
+              src={data.image}
               alt="Product Showcase"
               fill
               className="object-cover shadow-2xl"
@@ -28,16 +30,16 @@ export default function ProductSection() {
             </div>
 
             <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold leading-tight tracking-tight max-w-md">
-              {productSectionData.title}
+              {data.title}
             </h2>
 
             <p className="description">
-              {productSectionData.description}
+              {data.description}
             </p>
 
             <CustomButton 
-              href={productSectionData.buttonLink}
-              text={productSectionData.buttonText}
+              href={data.buttonLink}
+              text={data.buttonText}
             />
           </div>
         </div>

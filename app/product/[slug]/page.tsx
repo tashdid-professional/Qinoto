@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
 import ProductCard from "@/components/ProductCard";
-import { products } from "@/public/datas/products";
+import { getProductBySlug, getProducts } from "@/src/services/api";
+import { Product, ProductVariant } from "@/src/types";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -14,13 +15,34 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 export default function ProductDetailsPage() {
   const { slug } = useParams();
-  const product = products.find((p) => p.slug === slug);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [activeTab, setActiveTab] = useState("description");
-  const [selectedVariant, setSelectedVariant] = useState(product?.variants?.[0] || null);
-  const [mainImage, setMainImage] = useState(product?.image || "");
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null);
+  const [mainImage, setMainImage] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (typeof slug !== 'string') return;
+      
+      const productData = await getProductBySlug(slug);
+      if (productData) {
+        setProduct(productData);
+        setSelectedVariant(productData.variants?.[0] || null);
+        setMainImage(productData.image || "");
+        
+        const allProducts = await getProducts();
+        const related = allProducts
+          .filter((p) => p.category !== productData.category)
+          .slice(0, 4);
+        setRelatedProducts(related);
+      }
+    };
+    fetchData();
+  }, [slug]);
 
   // Update image when product or variant changes
-  React.useEffect(() => {
+  useEffect(() => {
     if (product) {
       if (selectedVariant) {
         setMainImage(selectedVariant.image);
@@ -31,6 +53,9 @@ export default function ProductDetailsPage() {
   }, [product, selectedVariant]);
 
   if (!product) {
+    if (product === null && slug) {
+       // Still loading or not found
+    }
     return (
       <main className="min-h-screen bg-white">
         <Navbar />
@@ -42,10 +67,6 @@ export default function ProductDetailsPage() {
       </main>
     );
   }
-
-  const relatedProducts = products
-    .filter((p) => p.category !== product.category)
-    .slice(0, 4);
 
   const activeGallery = selectedVariant ? selectedVariant.gallery : product.gallery;
 

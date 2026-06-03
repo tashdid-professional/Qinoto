@@ -1,15 +1,17 @@
 import Image from "next/image";
-import { about1 } from "@/public/datas/about";
+import { getAbout1Data } from "@/src/services/api";
 import CustomButton from "./CustomButton";
 
-export default function ProductSection() {
+export default async function ProductSection() {
+  const data = await getAbout1Data();
+
   return (
     <section className="bg-white pt-20 md:pt-32 font-karla overflow-hidden">
       <div className="flex flex-col lg:flex-row items-stretch">
         {/* Image Content (Laptop/Mockup Side) */}
         <div className="relative w-full lg:w-1/2 order-2 lg:order-1 min-h-[300px] sm:min-h-[400px] lg:min-h-[600px]">
           <Image
-            src={about1.image}
+            src={data.image}
             alt="Product Showcase"
             fill
             className="object-cover"
@@ -26,16 +28,16 @@ export default function ProductSection() {
           </div>
 
           <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold leading-tight tracking-tight max-w-md">
-            {about1.title}
+            {data.title}
           </h2>
 
           <p className="description max-w-md">
-            {about1.description}
+            {data.description}
           </p>
 
           <CustomButton 
-            href={about1.buttonLink}
-            text={about1.buttonText}
+            href={data.buttonLink}
+            text={data.buttonText}
           />
         </div>
       </div>

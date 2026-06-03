@@ -1,9 +1,9 @@
-import { privacyPolicyContent } from "@/public/datas/legal";
+import { getPrivacyPolicy } from "@/src/services/api";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function PrivacyPolicyPage() {
-  const data = privacyPolicyContent;
+export default async function PrivacyPolicyPage() {
+  const data = await getPrivacyPolicy();
 
   return (
     <>

@@ -1,8 +1,10 @@
 import Image from "next/image";
-import { about2 } from "@/public/datas/about";
+import { getAbout2Data } from "@/src/services/api";
 import CustomButton from "./CustomButton";
 
-export default function ColorsSection() {
+export default async function ColorsSection() {
+  const data = await getAbout2Data();
+
   return (
     <section className="bg-white font-karla overflow-hidden mb-20 md:mb-26">
       <div className="flex flex-col lg:flex-row items-stretch ">
@@ -16,23 +18,23 @@ export default function ColorsSection() {
           </div>
 
           <h2 className="text-[32px] sm:text-[40px] md:text-[48px] font-bold leading-tight tracking-tight max-w-md">
-            {about2.title}
+            {data.title}
           </h2>
 
           <p className="description max-w-md">
-            {about2.description}
+            {data.description}
           </p>
 
           <CustomButton 
-            href={about2.buttonLink}
-            text={about2.buttonText}
+            href={data.buttonLink}
+            text={data.buttonText}
           />
         </div>
 
         {/* Image Content (Right on Desktop) */}
         <div className="relative w-full lg:w-1/2 order-1 lg:order-2 min-h-[300px] sm:min-h-[400px] lg:min-h-[600px]">
           <Image
-            src={about2.image}
+            src={data.image}
             alt="Color Shades"
             fill
             className="object-cover"

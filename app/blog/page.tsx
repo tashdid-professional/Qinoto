@@ -1,18 +1,28 @@
 "use client";
 
-import { blogs } from "@/public/datas/blogs";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BlogCard from "@/components/BlogCard";
 import BlogSidebar from "@/components/BlogSidebar";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
+import { Suspense, useState, useEffect } from "react";
+import { getBlogs } from "@/src/services/api";
+import { Blog } from "@/src/types";
 
 function BlogGrid() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
   const searchParams = useSearchParams();
   const search = searchParams.get("search")?.toLowerCase() || "";
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 8;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getBlogs();
+      setBlogs(data);
+    };
+    fetchData();
+  }, []);
 
   const filteredBlogs = blogs.filter((blog) => 
     blog.title.toLowerCase().includes(search) || 

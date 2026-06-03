@@ -1,9 +1,9 @@
-import { termsAndConditionsContent } from "@/public/datas/legal";
+import { getTermsAndConditions } from "@/src/services/api";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function TermsAndConditionsPage() {
-  const data = termsAndConditionsContent;
+export default async function TermsAndConditionsPage() {
+  const data = await getTermsAndConditions();
 
   return (
     <>

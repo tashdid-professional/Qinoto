@@ -1,9 +1,11 @@
 import Image from "next/image";
-import { newsletterData } from "@/public/datas/homepage";
+import { getNewsletterData } from "@/src/services/api";
 
-export default function NewsletterSection() {
+export default async function NewsletterSection() {
+  const newsletterData = await getNewsletterData();
+
   return (
-    <section className="bg-white pb-20 md:pb-32 px-6 md:px-0 md:pr-12 lg:pr-24 font-karla overflow-hidden">
+    <section className="bg-white pb-20 md:pb-32 px-6 md:px-0 lg:pr-24 font-karla overflow-hidden">
       <div className=" flex flex-col lg:flex-row items-center gap-12 md:gap-16 lg:gap-24">
         {/* Left Side: Large Image */}
         <div className="w-full lg:w-[45%] relative h-75 sm:h-100 md:h-150 lg:scale-110 ">
@@ -17,7 +19,7 @@ export default function NewsletterSection() {
         </div>
 
         {/* Right Side: Content */}
-        <div className="w-full lg:w-[55%] flex flex-col gap-6 md:gap-8">
+        <div className="w-full lg:w-[55%] flex flex-col gap-6 md:gap-8 lg:pl-0 md:pl-10">
           {/* Zig-Zag Icon */}
           <div className="w-10 md:w-12 h-4 text-black">
             <svg viewBox="0 0 40 10" fill="none" stroke="currentColor" strokeWidth="1">

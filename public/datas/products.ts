@@ -75,7 +75,7 @@ export const products: Product[] = [
     ],
     videos: ["vP9X2V9c3Uw"],
     purchaseLink: "#",
-    featured: true
+    featured: false
   },
   {
     id: 3,
@@ -119,7 +119,7 @@ export const products: Product[] = [
     gallery: ["https://picsum.photos/800/1000?random=8", "https://picsum.photos/800/1000?random=108", "https://picsum.photos/800/1000?random=208"],
     videos: ["vP9X2V9c3Uw"],
     purchaseLink: "#",
-    featured: true
+    featured: false
   },
   {
     id: 6,
@@ -154,7 +154,7 @@ export const products: Product[] = [
     gallery: ["https://picsum.photos/800/1000?random=11", "https://picsum.photos/800/1000?random=111", "https://picsum.photos/800/1000?random=211"],
     videos: ["vP9X2V9c3Uw"],
     purchaseLink: "#",
-    featured: false
+    featured: true
   },
   {
     id: 8,
@@ -168,7 +168,7 @@ export const products: Product[] = [
     gallery: ["https://picsum.photos/800/1000?random=12", "https://picsum.photos/800/1000?random=112", "https://picsum.photos/800/1000?random=212"],
     videos: ["vP9X2V9c3Uw"],
     purchaseLink: "#",
-    featured: false
+    featured: true
   },
   {
     id: 9,
@@ -212,7 +212,7 @@ export const products: Product[] = [
     gallery: ["https://picsum.photos/800/1000?random=15", "https://picsum.photos/800/1000?random=115", "https://picsum.photos/800/1000?random=215"],
     videos: ["vP9X2V9c3Uw"],
     purchaseLink: "#",
-    featured: true
+    featured: false
   },
   {
     id: 12,
@@ -226,6 +226,6 @@ export const products: Product[] = [
     gallery: ["https://picsum.photos/800/1000?random=16", "https://picsum.photos/800/1000?random=116", "https://picsum.photos/800/1000?random=216"],
     videos: ["vP9X2V9c3Uw"],
     purchaseLink: "#",
-    featured: false
+    featured: true
   },
 ];

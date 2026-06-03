@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Blog } from "@/public/datas/blogs";
+import { Blog } from "@/src/types";
 import { useState } from "react";
 
 export default function BlogCard({ blog }: { blog: Blog }) {
@@ -54,7 +54,7 @@ export default function BlogCard({ blog }: { blog: Blog }) {
       {/* Footer */}
       <div className="border-t border-black flex items-center h-12 uppercase text-[12px] font-bold tracking-widest px-8">
         <div className="flex-grow">
-          {blog.day}th {blog.month} 2026
+          {blog.day}th {blog.month} {blog.year || '2026'}
         </div>
         <div className="w-px h-full bg-black"></div>
         <button 

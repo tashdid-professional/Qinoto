@@ -1,21 +1,33 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { testimonialsData } from "@/public/datas/homepage";
+import { getTestimonials } from "@/src/services/api";
+import { TestimonialData } from "@/src/types";
 
 export default function TestimonialSection() {
+  const [testimonials, setTestimonials] = useState<TestimonialData[]>([]);
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(0); // -1 for left, 1 for right
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getTestimonials();
+      setTestimonials(data);
+    };
+    fetchData();
+  }, []);
+
+  if (testimonials.length === 0) return null;
+
   const nextSlide = () => {
     setDirection(1);
-    setCurrent((prev) => (prev + 1) % testimonialsData.length);
+    setCurrent((prev) => (prev + 1) % testimonials.length);
   };
 
   const prevSlide = () => {
     setDirection(-1);
-    setCurrent((prev) => (prev - 1 + testimonialsData.length) % testimonialsData.length);
+    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
 
   const handleDotClick = (index: number) => {
@@ -34,8 +46,8 @@ export default function TestimonialSection() {
         <div className="relative w-20 h-20 md:w-24 md:h-24 mb-6 md:mb-10">
           <div className="absolute inset-0 rounded-full border border-black/10 scale-110"></div>
           <Image
-            src={testimonialsData[current].image}
-            alt={testimonialsData[current].name}
+            src={testimonials[current].image}
+            alt={testimonials[current].name}
             fill
             className="rounded-full object-cover"
           />
@@ -44,26 +56,26 @@ export default function TestimonialSection() {
         {/* Testimonial Content */}
         <div className="space-y-4 md:space-y-6 min-h-[auto] md:min-h-[280px] flex flex-col justify-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[38px] font-bold text-black tracking-tight leading-tight">
-            {testimonialsData[current].title}
+            {testimonials[current].title}
           </h2>
 
           <p className="text-[#545454] text-base sm:text-lg md:text-xl lg:text-[22px] leading-relaxed max-w-3xl mx-auto">
-            {testimonialsData[current].quote}
+            {testimonials[current].quote}
           </p>
 
           <div className="pt-2 md:pt-4">
             <h3 className="text-xl md:text-[24px] font-bold text-black">
-              {testimonialsData[current].name}
+              {testimonials[current].name}
             </h3>
             <p className="text-[10px] md:text-xs font-bold tracking-[0.2em] mt-1 md:mt-2">
-              {testimonialsData[current].role}
+              {testimonials[current].role}
             </p>
           </div>
         </div>
 
         {/* Pagination Dots */}
         <div className="flex gap-4 mt-16">
-          {testimonialsData.map((_, index) => (
+          {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => handleDotClick(index)}

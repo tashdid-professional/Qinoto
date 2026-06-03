@@ -1,4 +1,4 @@
-import { blogs } from "@/public/datas/blogs";
+import { getBlogBySlug } from "@/src/services/api";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BlogSidebar from "@/components/BlogSidebar";
@@ -7,7 +7,7 @@ import { notFound } from "next/navigation";
 
 export default async function BlogDetailsPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const blog = blogs.find((b) => b.slug === slug);
+  const blog = await getBlogBySlug(slug);
 
   if (!blog) {
     notFound();
@@ -38,7 +38,7 @@ export default async function BlogDetailsPage({ params }: { params: Promise<{ sl
                 {/* Overlapping Title Block - Positioning it at the bottom left */}
                 <div className="lg:absolute bottom-0 left-0 bg-white lg:-mb-8 pt-8 lg:pt-10 lg:pr-10 lg:max-w-2xl">
                    <div className="flex items-center gap-2 text-[12px] font-bold tracking-widest text-[#999] uppercase mb-4">
-                    <span>{blog.day}th {blog.month} 2026</span>
+                    <span>{blog.day}th {blog.month} {blog.year || '2026'}</span>
                     <span className="text-gray-300">|</span>
                     <span className="">{blog.category}</span>
                   </div>
