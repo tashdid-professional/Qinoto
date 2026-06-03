@@ -13,6 +13,7 @@ export interface Product {
   oldPrice?: number;
   image: string;
   badge?: "Sale" | "New";
+  shortdescription?: string;
   description: string;
   slug: string;
   tags: string[];

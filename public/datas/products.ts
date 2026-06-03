@@ -13,6 +13,7 @@ export interface Product {
   image: string;
   badge?: "Sale" | "New";
   description: string;
+  shortdescription?: string;
   slug: string;
   tags: string[];
   gallery: string[];
@@ -33,6 +34,7 @@ export const products: Product[] = [
     image: "https://picsum.photos/800/1000?random=1",
     badge: "Sale",
     description: "An dico accommodare ius, porro mnesarchum pro in. Cetero fierent urbanitas eam id, sed movet voluptua ut. Eu agam malorum nec. Eu has vide putent, dico option nominati no eam. Ea erant impetus consequuntur eos, velit congue vidisse eos ne.",
+    shortdescription: "A vibrant eyeshadow with a unique texture.",
     slug: "film-eyeshadow",
     tags: ["Cosmetic", "Make Up"],
     gallery: ["https://picsum.photos/800/1000?random=1", "https://picsum.photos/800/1000?random=101", "https://picsum.photos/800/1000?random=201"],
@@ -66,6 +68,7 @@ export const products: Product[] = [
     image: "https://picsum.photos/800/1000?random=4",
     description: "An dico accommodare ius, porro mnesarchum pro in. Cetero fierent urbanitas eam id, sed movet voluptua ut. Eu agam malorum nec. Eu has vide putent, dico option nominati no eam.",
     slug: "wild-palettes",
+    shortdescription: "A vibrant palette with a unique texture.",
     tags: ["Cosmetic", "Palettes"],
     gallery: ["https://picsum.photos/800/1000?random=4", "https://picsum.photos/800/1000?random=104", "https://picsum.photos/800/1000?random=204"],
     variantType: "Colors",
@@ -83,6 +86,7 @@ export const products: Product[] = [
     category: "Lip Gloss",
     price: 35.0,
     image: "https://picsum.photos/800/1000?random=6",
+    shortdescription: "A vibrant lipstick with a unique texture.",
     description: "An dico accommodare ius, porro mnesarchum pro in. Cetero fierent urbanitas eam id, sed movet voluptua ut. Eu agam malorum nec.",
     slug: "rose-safari",
     tags: ["Classic", "Lipstick"],
@@ -113,6 +117,7 @@ export const products: Product[] = [
     price: 32.0,
     image: "https://picsum.photos/800/1000?random=8",
     badge: "New",
+    shortdescription: "A vibrant lip gloss with a unique texture.",
     description: "An dico accommodare ius, porro mnesarchum pro in. Cetero fierent urbanitas eam id, sed movet voluptua ut.",
     slug: "summer-drama",
     tags: ["Drama", "Intense"],
@@ -128,6 +133,7 @@ export const products: Product[] = [
     price: 18.0,
     image: "https://picsum.photos/800/1000?random=9",
     badge: "Sale",
+    shortdescription : "A vibrant matte lipstick with a unique texture.",
     description: "An dico accommodare ius, porro mnesarchum pro in. Cetero fierent urbanitas eam id, sed movet voluptua ut.",
     slug: "velvet-matte",
     tags: ["Matte", "Velvet"],

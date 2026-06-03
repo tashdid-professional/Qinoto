@@ -147,7 +147,7 @@ export default function ProductDetailsPage() {
             </div>
 
             <p className="text-[#545454] font-lato text-sm md:text-[15px] leading-relaxed mb-8 whitespace-pre-line">
-              {product.description}
+              {product.shortdescription}
             </p>
 
             {/* Meta */}
